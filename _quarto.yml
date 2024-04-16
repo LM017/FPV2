@@ -1,0 +1,7 @@
+project:
+  title: "FPV2"
+
+editor: visual
+
+execute:
+  freeze: auto

@@ -1,5 +1,6 @@
 project:
   title: "FPV2"
+  type: website
 
 editor: visual
 

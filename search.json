@@ -4,14 +4,14 @@
     "href": "Model.html",
     "title": "Penguins Model",
     "section": "",
-    "text": "from palmerpenguins import penguins\nfrom pandas import get_dummies\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn import preprocessing"
+    "text": "from palmerpenguins import penguins\nfrom pandas import get_dummies\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn import linear_model\nfrom sklearn import tree\nfrom sklearn import preprocessing"
   },
   {
     "objectID": "Model.html#penguin-size-and-mass-by-sex-and-species",
     "href": "Model.html#penguin-size-and-mass-by-sex-and-species",
     "title": "Penguins Model",
     "section": "",
-    "text": "from palmerpenguins import penguins\nfrom pandas import get_dummies\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn import preprocessing"
+    "text": "from palmerpenguins import penguins\nfrom pandas import get_dummies\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn import linear_model\nfrom sklearn import tree\nfrom sklearn import preprocessing"
   },
   {
     "objectID": "Model.html#get-data",
@@ -25,14 +25,14 @@
     "href": "Model.html#define-model-and-fit",
     "title": "Penguins Model",
     "section": "Define Model and Fit",
-    "text": "Define Model and Fit\n\nX = get_dummies(df[['bill_length_mm', 'species', 'sex']], drop_first = True)\ny = df['body_mass_g']\n\nmodel = LinearRegression().fit(X, y)"
+    "text": "Define Model and Fit\n\nX = get_dummies(df[['bill_length_mm', 'species', 'sex']], drop_first = True)\ny = df['body_mass_g']\n\nmodel = LinearRegression().fit(X, y)\n\nmodel2 = linear_model.Ridge(alpha=0).fit(X,y)\n\nmodel3 = tree.DecisionTreeRegressor().fit(X,y)"
   },
   {
     "objectID": "Model.html#get-some-information",
     "href": "Model.html#get-some-information",
     "title": "Penguins Model",
     "section": "Get some information",
-    "text": "Get some information\n\nprint(f\"R^2 {model.score(X,y)}\")\nprint(f\"Intercept {model.intercept_}\")\nprint(f\"Columns {X.columns}\")\nprint(f\"Coefficients {model.coef_}\")\n\nR^2 0.8555368759537614\nIntercept 2169.2697209393973\nColumns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_male'], dtype='object')\nCoefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]\n\n\n\nfrom vetiver import VetiverModel\nfrom vetiver import vetiver_pin_write\nfrom vetiver import VetiverAPI\nimport pins\n\nv = VetiverModel(model, model_name = 'penguin_model', prototype_data = X)\nb = pins.board_folder('data/model', allow_pickle_read=True)\nvetiver_pin_write(b, v)\nv = VetiverModel.from_pin(b, 'penguin_model')\napp = VetiverAPI(v, check_prototype=True)\n\nModel Cards provide a framework for transparent, responsible reporting. \n Use the vetiver `.qmd` Quarto template as a place to start, \n with vetiver.model_card()\nWriting pin:\nName: 'penguin_model'\nVersion: 20240416T151420Z-19257\n\n\n\nimport duckdb\n\ncon = duckdb.connect('my-db.duckdb')\ndf = con.execute(\"SELECT * FROM penguins\").fetchdf().dropna()\ncon.close()"
+    "text": "Get some information\n\nprint(f\"R^2 {model.score(X,y)}\")\nprint(f\"Intercept {model.intercept_}\")\nprint(f\"Columns {X.columns}\")\nprint(f\"Coefficients {model.coef_}\")\n\nR^2 0.8555368759537614\nIntercept 2169.2697209393973\nColumns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_male'], dtype='object')\nCoefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]\n\n\n\nfrom vetiver import VetiverModel\nfrom vetiver import vetiver_pin_write\nfrom vetiver import VetiverAPI\nimport pins\n\nv = VetiverModel(model, model_name = 'penguin_model', prototype_data = X)\nb = pins.board_folder('data/model', allow_pickle_read=True)\nvetiver_pin_write(b, v)\nv = VetiverModel.from_pin(b, 'penguin_model')\napp = VetiverAPI(v, check_prototype=True)\n\nModel Cards provide a framework for transparent, responsible reporting. \n Use the vetiver `.qmd` Quarto template as a place to start, \n with vetiver.model_card()\nWriting pin:\nName: 'penguin_model'\nVersion: 20240418T091547Z-19257\n\n\n\nimport duckdb\n\ncon = duckdb.connect('my-db.duckdb')\ndf = con.execute(\"SELECT * FROM penguins\").fetchdf().dropna()\ncon.close()"
   },
   {
     "objectID": "EDA.html",

@@ -16,6 +16,7 @@ library(discrim)
 library(palmerpenguins)
 library(dplyr)
 library(ggplot2)
+library(dbplyr)
 
 df <- palmerpenguins::penguins
 theme_set(theme_classic())
